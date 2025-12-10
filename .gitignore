@@ -16,7 +16,7 @@ env/
 .vscode/
 
 # Data files
-*.csv
+
 *.xlsx
 *.xls
 *.parquet
