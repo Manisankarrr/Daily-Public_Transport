@@ -1,79 +1,83 @@
-Time Series Forecasting of Daily Public Transport Journeys
-1. Dataset Overview
+# Time Series Forecasting of Daily Public Transport Journeys
 
-This project uses a daily public transport dataset containing passenger counts across service types such as Local Route, Light Rail, Rapid Route, School, and others.
-Data was cleaned, converted into a continuous daily time series, and combined into a single target variable: total_journeys.
-The dataset spans multiple years and shows strong weekly seasonality.
+## 1. Dataset Overview
 
-2. Forecasting Model Used
-Prophet Model
+This project analyzes daily public transport passenger counts across multiple service types such as Local Route, Light Rail, Rapid Route, School, and others.
 
-The final forecasting model used is Prophet, chosen because it:
+- The raw data was cleaned and converted into a continuous daily time series.
+- All service types were aggregated into a single target variable: total_journeys.
+- The dataset spans multiple years and exhibits strong weekly seasonality.
 
-Automatically models weekly seasonality
+## 2. Forecasting Model Used
 
-Handles trend + seasonal patterns cleanly
+### Prophet Model
 
-Produces interpretable components and stable predictions
+Prophet was selected as the final forecasting model because it:
 
-Why SARIMAX Did Not Fit Well
+- Automatically models weekly seasonality
+- Handles trend and seasonal patterns effectively
+- Produces interpretable components and stable predictions
 
-SARIMAX was tested earlier but underperformed due to:
+### Why SARIMAX Did Not Fit Well
 
-Its difficulty capturing sharp weekday–weekend shifts
+SARIMAX was tested earlier but showed weaker performance due to:
 
-Limited flexibility in modeling non-linear seasonal patterns
-
-Higher forecast error compared to Prophet
+- Difficulty capturing sharp weekday–weekend shifts
+- Limited flexibility in modeling non-linear seasonal patterns
+- Higher forecast error compared to Prophet
 
 Prophet outperformed SARIMAX in stability and overall accuracy.
 
-3. Model Performance & Evaluation
-Evaluation Metrics Used
+## 3. Model Performance & Evaluation
 
-We evaluated the models using:
+### Evaluation Metrics Used
 
-MAE (Mean Absolute Error)
+- MAE (Mean Absolute Error)
+- RMSE (Root Mean Squared Error)
 
-RMSE (Root Mean Squared Error)
+### Baseline Result (before cleaning)
 
-Baseline Result (before cleaning)
-Baseline MAE: 22749.25
+- Baseline MAE: 22749.25
 
-SARIMAX Result
-SARIMAX MAE: 14703.75
+### SARIMAX Result
 
-Prophet Result
-Prophet MAE: 14273.84
-Prophet RMSE: 22307.92
+- SARIMAX MAE: 14703.75
 
-4. Key Insights
-Insight 1: Prophet Delivered the Most Stable Performance
+### Prophet Result
 
-Prophet achieved the lowest MAE among tested models.
-Suggested screenshot: Prophet forecast plot (yhat vs actual).
+- Prophet MAE: 14273.84
+- Prophet RMSE: 22307.92
 
-Insight 2: SARIMAX Struggled With Weekly Seasonality
+## 4. Key Insights
 
-Large weekend drops were not captured well, leading to higher error.
-Suggested screenshot: SARIMAX forecast vs actual plot.
-
-Insight 3: Initial Baseline Was High Due to Unclean Data
+### Insight 1: Initial Baseline Was High
 
 The early baseline MAE (22k+) highlighted missing dates and irregularities.
-Suggested screenshot: Before/after cleaning time series plot.
+<img width="1373" height="195" alt="baseline" src="https://github.com/user-attachments/assets/03ac5831-7d93-4a59-8666-79fa2ddb6559" />
 
-Insight 4: Weekly Seasonality Is the Dominant Pattern
+### Insight 2: Prophet Delivered the Most Stable Performance
 
-Most variation comes from weekday peaks and weekend dips, not long-term trend.
-Suggested screenshot: Prophet weekly seasonality component plot.
+Prophet achieved the lowest MAE among tested models.  
+<img width="1376" height="197" alt="prophet" src="https://github.com/user-attachments/assets/b2043ca6-ee6e-4b6c-928b-cf6343959ff3" />
 
-Insight 5: Prophet Offers Clear Decomposition for Interpretation
 
-Trend, weekly pattern, and residuals are easy to visualize and communicate.
-Suggested screenshot: Prophet components plot (trend + weekly).
+### Insight 3: SARIMAX Struggled With Weekly Seasonality
 
-5. Final Notes
+Large weekend drops were not captured well, leading to higher error.  
+<img width="1431" height="208" alt="sarimax" src="https://github.com/user-attachments/assets/05049a5a-1dce-4510-9c13-65975d5dc624" />
 
-Prophet provides a clear, interpretable, and effective forecasting method for datasets with strong recurring seasonal patterns.
-SARIMAX was explored but did not match Prophet’s performance for this specific use case.
+
+### Insight 4: Weekly Seasonality Is the Dominant Pattern
+
+Most variation comes from weekday peaks and weekend dips, not long-term trend.  
+<img width="1174" height="400" alt="image" src="https://github.com/user-attachments/assets/7d36fe07-8ee9-4c9f-9b82-159847a5fba3" />
+
+
+### Insight 5: Prophet Offers Clear Decomposition for Interpretation
+
+Trend, weekly pattern, and residuals are easy to visualize and communicate.  
+
+## 5. Final Notes
+
+- Prophet provides a clear, interpretable, and effective forecasting method for datasets with strong recurring seasonal patterns.
+- SARIMAX was explored but did not match Prophet’s performance for this specific use case.
