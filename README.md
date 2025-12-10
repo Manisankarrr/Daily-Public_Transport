@@ -77,7 +77,33 @@ Most variation comes from weekday peaks and weekend dips, not long-term trend.
 
 Trend, weekly pattern, and residuals are easy to visualize and communicate.  
 
-## 5. Final Notes
+## 5. Exploratory Data Analysis (EDA)
+
+The dataset contains daily passenger counts across multiple transport services, combined into a single total_journeys variable for forecasting. After cleaning and converting the data into a continuous daily time series, several patterns emerged.
+
+### Key Observations
+
+ - Weekly seasonality: Strong weekday peaks and weekend drops dominate the series.
+
+ - Stable long-term trend: No major upward or downward trend across years.
+
+ - Service contributions: Rapid Route, Local Route, and Light Rail make up most of the total journeys.
+
+ - Anomalies present: Occasional unusually low/high days due to holidays or operational changes.
+
+ - Clean structure: No missing values after resampling and filling; data suitable for Prophet modeling.
+
+### Suggested visuals:
+
+ - Daily line plot of total_journeys
+
+ - Weekly seasonality plot
+
+ - Prophet trend/seasonality components
+
+ - Histogram or boxplot of journey distribution
+
+## 6. Final Notes
 
 - Prophet provides a clear, interpretable, and effective forecasting method for datasets with strong recurring seasonal patterns.
 - SARIMAX was explored but did not match Prophet’s performance for this specific use case.
